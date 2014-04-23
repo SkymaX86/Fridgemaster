@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html> 
+	<head> 
+	<title>Fridgemaster</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <link rel="stylesheet" href="Scripts/jquery.mobile-1.4.2.min.css" />
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/jquery.mobile-1.4.2.min.js"></script>
+
+    <script src="Scripts/jquery.signalR-2.0.3.min.js"></script>
+    <script src="http://localhost:58684/WebHost/signalr/hubs"></script>
+
+	<script src="resources/js/fridgemasterLib.js"></script>
+
+	<script>
+        $(document).ready(function () {
+
+            /*Register SignalR Connection*/
+            var signalR = $.connection.productHub;
+
+            signalR.client.reloadProducts = function () {
+                LoadItems();
+            };
+            /*Register SignalR Connection*/
+
+
+			LoadItems();
+			
+			$('#comboBox_Einheit').change(function () {
+			    SetupSlider();
+			});
+
+			$('#productsList').on('click', function (event) {
+			    $('#currentItemId').val(event.target.id);
+			    SetupDetailsPage(event.target.id);
+			    
+			});
+			
+			$('#newProduct_button').click(function () {
+			    ClearDetailsPage();
+			});
+
+            /*When the hub.start is done, bind the click events*/
+			$.connection.hub.start().done(function () {
+
+			    $("#delete_button").click(function () {
+			        DeleteItem();
+			        signalR.server.productsChanged();
+			    });
+
+			    $("#save_button").click(function () {
+			        SaveItem();
+			        signalR.server.productsChanged();
+			    });
+
+			});
+
+        });
+	</script>
+	
+</head> 
+
+<body> 
+
+<!-- Start of first page -->
+<div data-role="page" id="pageMain">
+
+	<div data-role="header" data-position="fixed">
+		<h1>Fridge Master</h1>
+	</div><!-- /header -->
+
+	<!--data-inset="true"-->
+	<div data-role="content">	
+		<ul id="productsList"
+			data-role="listview"
+			data-autodividers="true"
+			data-sort="true"
+			data-theme="d" 
+		    data-divider-theme="c"
+			data-filter="true"
+			data-filter-placeholder="Filter">
+		</ul>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a id="newProduct_button" href="#pageDetails" data-icon="plus">Hinzuf&uuml;gen</a></li>
+				<li><a href="javascript:location.reload();" data-icon="refresh">Aktualisieren</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+<!-- End of first page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="pageDetails">
+
+	<div data-role="header" data-position="fixed">
+		<h1>Fridge Master</h1>
+	</div><!-- /header -->
+
+	<!--data-inset="true"-->
+	<div data-role="content">
+        <input id="currentItemId" type="hidden" value="">
+		<div>
+            <input type="text" name="text_Name" id="textBox_Name" value="" data-clear-btn="true" placeholder="Produktname"/>
+            <br/>
+			<label for="comboBox_Einheit">Einheit ausw&auml;hlen:</label>
+            <select name="comboBox_Einheit" id="comboBox_Einheit" data-native-menu="false" data-placeholder="false">
+                <option value="0">g</option>
+                <option value="1">St&uuml;ck</option>
+                <option value="2">Packung</option>
+                <option value="3">kg</option>
+            </select>
+		</div>
+		<br/>
+		<div>
+            <label for="sliderMenge">Menge ausw&auml;hlen:</label>
+			<input type="range" name="sliderMenge" id="slider_Menge" value="0" min="0" max="5000" />
+		</div>
+        <br />
+        <a href="index.html" id="delete_button" class="ui-btn ui-btn-b ui-shadow ui-corner-all">Entfernen</a>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+                <li><a href="#pageMain" data-icon="back" data-transition="slidedown">Zur&uuml;ck</a></li>
+				<li><a id="save_button" href="#pageMain" data-icon="check" data-transition="slidedown">Speichern</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+<!-- End of second page -->
+
+<!-- Error Dialog -->
+<div id="connectionErrorDialog" data-role="page" data-dialog="true">
+    <div data-role="header">
+        <h2>Fehler</h2>
+    </div>
+    <div class="ui-content" role="main">
+        <p id="dialogText"></p>
+        <a href="index.html" id="exit-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all">OK</a>
+    </div>
+</div>
+<!-- Error Dialog -->
+
+</body>
+</html>

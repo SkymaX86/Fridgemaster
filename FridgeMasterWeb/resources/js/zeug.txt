@@ -1,0 +1,11 @@
+alert(products);
+	
+	$('#productsList').listview().empty();
+	
+	$.each(products, function(i, item) {
+		//alert(products[i].Id + ' ' + products[i].Name + ' ' + products[i].Einheit + products[i].Menge);
+		var einheit = GetEinheitStringFromId(products[i].Einheit) 
+		$('#productsList').append('<li><a href="#pageDetails" data-transition="slideup">' + products[i].Name + '<div class="ui-li-count">' + products[i].Menge + ' ' + einheit + '</div></a></li>');
+	});
+	
+	$('#productsList').listview('refresh');

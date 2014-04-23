@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeMasterServices", "FridgeMasterServices\FridgeMasterServices.csproj", "{1CE8734E-871F-4127-B9BD-E76DC72C975C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeMasterWebHost", "FridgeMasterWebHost\FridgeMasterWebHost.csproj", "{4DBDE278-4E3D-42EF-8A8A-FD9D948AEE27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeMasterWeb", "FridgeMasterWeb\FridgeMasterWeb.csproj", "{AF83052D-0687-4F5E-8CD4-43238C9FF33A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{1B1F0C06-6FFA-4E81-A997-F71326E13BBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CE8734E-871F-4127-B9BD-E76DC72C975C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE8734E-871F-4127-B9BD-E76DC72C975C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE8734E-871F-4127-B9BD-E76DC72C975C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE8734E-871F-4127-B9BD-E76DC72C975C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DBDE278-4E3D-42EF-8A8A-FD9D948AEE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DBDE278-4E3D-42EF-8A8A-FD9D948AEE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DBDE278-4E3D-42EF-8A8A-FD9D948AEE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DBDE278-4E3D-42EF-8A8A-FD9D948AEE27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF83052D-0687-4F5E-8CD4-43238C9FF33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF83052D-0687-4F5E-8CD4-43238C9FF33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF83052D-0687-4F5E-8CD4-43238C9FF33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF83052D-0687-4F5E-8CD4-43238C9FF33A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DBDE278-4E3D-42EF-8A8A-FD9D948AEE27} = {1B1F0C06-6FFA-4E81-A997-F71326E13BBA}
+		{1CE8734E-871F-4127-B9BD-E76DC72C975C} = {1B1F0C06-6FFA-4E81-A997-F71326E13BBA}
+	EndGlobalSection
+EndGlobal
